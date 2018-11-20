@@ -13,17 +13,16 @@ ui <- fluidPage(
     sidebarPanel(
       tags$h3("Information"),
       tags$ul(
+        tags$li("All information om fonder är hämtad fran Pensionsmyndigheten och Hållbarhetsprofilen.se"),
         tags$li("Verktyget är ej optimerat för mobilskärmar"),
         tags$li("Bokstäverna ÅÄÖ kan ibland falla bort ur text och skapa problem för vissa fonder")),
       tags$i("Rapportera gärna eventuella problem till: "),
       tagList(a("john.sundh@gmail.com", href="mailto:john.sundh@gmail.com")),
+      tags$br(),
+      tagList(a("Se koden på GitHub", href="https://github.com/johnne/pensioner")),
       tags$hr(),
       tags$h3("Din fond idag:"),
-      tags$i("Du hittar din fond på Pensionsmyndigheten "),
-      tagList(a("Mina Sidor", href="https://idpproxy.pensionsmyndigheten.se/idp/profile/SAML2/Redirect/SSO?execution=e1s1")),
-      tags$br(),
-      tags$i("Logga in och gå sedan till din "),
-      tagList(a("Fondportfölj",href="https://www.pensionsmyndigheten.se/service/fondportfolj/")),
+      tagList("Du hittar din fond i din", a("Fondportfölj", href="https://www.pensionsmyndigheten.se/service/fondportfolj/"), "på Pensionsmyndigheten"),
       uiOutput("select_fund"),
       uiOutput("your_fund_infotext"),
       uiOutput("your_fund_name"),
@@ -98,23 +97,13 @@ ui <- fluidPage(
           DT::dataTableOutput("fund_table")
         ),
         tabPanel(title = "Så här byter du fonder",
-          tags$br(),    
-          tags$b(tagList(a("1. Klicka här for att komma till Mina sidor pa pensionsmyndigheten.se. Logga in med BankID eller Mobilt BankID", href="https://idpproxy.pensionsmyndigheten.se/idp/profile/SAML2/Redirect/SSO?execution=e2s1"))),
           tags$br(),
-          tags$b(tagList(a("2. Gå till sidan för att byta fonder: https://www.pensionsmyndigheten.se/mina-tjanster/fondtorg/fondbyte", href="https://www.pensionsmyndigheten.se/mina-tjanster/fondtorg/fondbyte"))),
-          tags$br(),
-          tags$b("3. Sök upp den fond du vill byta till och klicka på '+'-tecknet för att lägga till den i din portfölj"),
-          tags$br(),
-          tags$b("4. Fördela andelar för fonderna i % och klicka sedan pa 'Gå vidare'"),
-          tags$br(),
-          tags$b("5. Signera. Klart!")
-        ),
-        tabPanel(title = "Om verktyget",
-          tags$br(),
-          tags$b("All information om fonder är hämtad fran Pensionsmyndighetens fondkatalog (2018) samt från hallbarhetsprofilen.se"),
-          tags$br(),
-          tags$b("För frågor/buggrapporter kontakta: "),
-          tagList(a("john.sundh@gmail.com", href="mailto:john.sundh@gmail.com"))
+          tags$ul(
+            tags$li(tagList("Gå till sidan för att byta fonder på Pensionsmyndigheten (logga in med BankID/Mobilt BankID):",a("https://www.pensionsmyndigheten.se/mina-tjanster/fondtorg/fondbyte", href="https://www.pensionsmyndigheten.se/mina-tjanster/fondtorg/fondbyte"))),
+            tags$li("Sök upp de fonder du vill byta till och klicka på '+'-tecknet för att lägga dessa i din portfölj"),
+            tags$li("Fördera andelar för fonderna i % och klicka på 'Gå vidare'"),
+            tags$li(tagList("Signera.",tags$b("Klart!")))
+          )
         )
       )
     )
