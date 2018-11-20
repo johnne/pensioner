@@ -1,0 +1,9 @@
+name: pension
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - pypdf2
+  - pandas
+  - phantomjs
+  - beautifulsoup4
