@@ -1,5 +1,13 @@
 options(warn=2)
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
+  observe({
+    x <- input$allcrit
+    if (x==TRUE)
+      updateCheckboxGroupInput(session, "criteria", selected = c("Klusterbomber","Kemiska vapen","Kärnvapen","Vapen/krigsmateriel","Alkohol",
+                                                                 "Tobak","Spelverksamhet","Pornografi","Fossilt","Kol","Uran","GMO"))
+    else
+      updateCheckboxGroupInput(session, "criteria", selected = c(""))
+  })
   get_comment <- function(data, fundname, commkey) {
     cols <- c("Fondföretag","Fondid","Fondnamn","Avgift","Avgiftstyp","Kategori","Fondtyp",
               "Etisk","Snitt (årlig)","Snitt (5 år)","Risk","Hållbarhetsprofilen",
@@ -590,10 +598,6 @@ shinyServer(function(input, output) {
     all_funds <- get_funds()
     #Filtrera fonder
     avoids <- input$criteria
-    if ("Samtliga av nedan"%in% avoids) {
-      avoids <- c("Klusterbomber","Kemiska vapen","Kärnvapen","Vapen/krigsmateriel","Alkohol",
-                  "Tobak","Spelverksamhet","Pornografi","Fossilt","Kol","Uran","GMO")
-    }
     df_f <- df
     if (!is.null(avoids)) {
       for (a in avoids) {

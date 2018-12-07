@@ -55,8 +55,9 @@ ui <- fluidPage(
       checkboxGroupInput("samma", label="Har samma", inline = TRUE,
                          choices = c("Risk","Fondtyp"), selected = c("Risk","Fondtyp")),
       checkboxGroupInput("criteria", label="Undviker", inline = TRUE,
-                         choices = c("Samtliga av nedan","Klusterbomber","Kemiska vapen","Kärnvapen","Vapen/krigsmateriel","Alkohol",
+                         choices = c("Klusterbomber","Kemiska vapen","Kärnvapen","Vapen/krigsmateriel","Alkohol",
                          "Tobak","Spelverksamhet","Pornografi","Fossilt","Kol","Uran","GMO")),
+      checkboxInput("allcrit", label="Markera alla"),
       
       tags$hr(),
       tags$h3("Bäst matchande fond:"),
